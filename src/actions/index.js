@@ -9,13 +9,16 @@ export const FETCH_WEATHER = "FETCH_WEATHER";
 // create the action creator fetchWeather
 export function fetchWeather(city) {
     const url = `${ROOT_URL}&q=${city},us`;
-    // take the url and make a get request on it. Returns a promise
+    // take the url and make an asynchronous get request on it.
+    // Returns a promise
     const request = axios.get(url);
 
-    // an action is an object that always has a type
+    // This is the Action, an object that always has a type
     return {
         type: FETCH_WEATHER,
+        // Assign the Promise to the payload key
+        // The middleware redux-promise unwraps the promise into relevant data
+        // this data is then sent to the reducers
         payload: request
     };
-
 }
